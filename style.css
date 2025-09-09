@@ -1,0 +1,353 @@
+:root {
+    --primary-color: #c62828;
+    --secondary-color: #fff8e1;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    grid-column: 1 / -1;
+}
+
+header h1 {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.sorteio-banner {
+    background: linear-gradient(90deg, #ffe082 0%, #ffab40 100%);
+    padding: 10px 0;
+    margin: 15px 0;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.sorteio-banner button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 7px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.sorteio-banner button:hover {
+    background-color: #a02020;
+}
+
+/* --- LAYOUT PRINCIPAL E CARDÁPIO --- */
+main.menu-container {
+    flex: 3;
+}
+
+h2 {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.grid-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.menu-item {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.menu-item img {
+    max-width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.menu-item h3 {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.menu-item .price {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.menu-item button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    margin-top: auto;
+}
+
+.menu-item button:hover {
+    background-color: #a02020;
+}
+
+/* --- CARRINHO DE COMPRAS --- */
+aside.cart {
+    flex: 1;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+#cart-items li:last-child {
+    border-bottom: none;
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+#checkout-btn {
+    background-color: #2e7d32;
+    color: white;
+}
+
+#clear-cart-btn {
+    background-color: #e0e0e0;
+    color: var(--text-color);
+}
+
+/* --- DIFERENCIAL & MODAL --- */
+.diferencial {
+    background: linear-gradient(135deg, #ffcc80, #ffab40);
+    text-align: center;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.diferencial button {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.diferencial button:hover {
+    transform: scale(1.05);
+}
+
+.curiosidade-section {
+    background: linear-gradient(90deg, #ffe082 0%, #ffab40 100%);
+    border-radius: 12px;
+    margin-top: 35px;
+    padding: 18px;
+    font-size: 1.15rem;
+    font-style: italic;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+/* --- MODAL GENÉRICO --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 12px;
+    position: relative;
+}
+.close-btn, .close-pagamento-btn, .close-nota-btn, .close-sorteio-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.form-group select, .form-group button, .form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+.checkbox-group label {
+    display: inline-block;
+    margin-right: 15px;
+}
+#custom-pasta-form button, #pagamento-form button, #voltar-menu-btn, #sorteio-form button {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding: 12px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+#custom-pasta-form button:hover,
+#pagamento-form button:hover,
+#voltar-menu-btn:hover,
+#sorteio-form button:hover {
+    background-color: #a02020;
+}
+
+/* --- MODAL DE PAGAMENTO --- */
+.pagamento-modal-content {
+    max-width: 430px;
+}
+.qrcode-img {
+    width: 150px;
+    display: block;
+    margin: 16px auto;
+}
+#pix-section p {
+    font-size: 1.05rem;
+    text-align: center;
+}
+#cartao-section input {
+    margin-bottom: 10px;
+}
+#dinheiro-section {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* --- MODAL DE NOTA FISCAL --- */
+.nota-modal-content {
+    max-width: 430px;
+    text-align: left;
+}
+#nota-fiscal-content {
+    background: #fffde7;
+    border-radius: 8px;
+    padding: 18px;
+    font-size: 1.05rem;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+#nota-fiscal-content ul {
+    padding-left: 16px;
+}
+
+/* --- MODAL SORTEIO --- */
+#sorteio-modal form input {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1.08rem;
+    padding: 10px;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+    aside.cart {
+        position: static;
+        margin-top: 30px;
+    }
+    .modal-content, .pagamento-modal-content, .nota-modal-content {
+        width: 95%;
+        min-width: 0;
+    }
+}

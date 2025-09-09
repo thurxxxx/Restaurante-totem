@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sapore Veloce - Totem de Atendimento</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lora:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Sapore Veloce</h1>
+            <p>A sua massa rápida com sabor de cantina!</p>
+            <div class="sorteio-banner" id="sorteio-banner">
+                <span>🎉 Participe do nosso sorteio semanal! <button id="participar-sorteio-btn">Participar</button></span>
+            </div>
+        </header>
+
+        <main class="menu-container">
+            <section class="diferencial">
+                <h2>⭐ Nosso Diferencial ⭐</h2>
+                <button id="open-custom-modal-btn">Monte sua Própria Massa!</button>
+                <p>Crie uma combinação única com seus ingredientes favoritos.</p>
+            </section>
+            
+            <h2>Massas (Lanches)</h2>
+            <div id="massas-section" class="grid-section"></div>
+
+            <h2>Combos Especiais</h2>
+            <div id="combos-section" class="grid-section"></div>
+
+            <h2>Acompanhamentos</h2>
+            <div id="acompanhamentos-section" class="grid-section"></div>
+
+            <h2>Bebidas</h2>
+            <div id="bebidas-section" class="grid-section"></div>
+
+            <h2>Sobremesas</h2>
+            <div id="sobremesas-section" class="grid-section"></div>
+
+            <section class="curiosidade-section">
+                <h2>🍝 Curiosidade do Dia</h2>
+                <p id="curiosidade-dia"></p>
+            </section>
+        </main>
+
+        <aside class="cart">
+            <h2>Meu Pedido</h2>
+            <ul id="cart-items"></ul>
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+            <button id="checkout-btn">Finalizar Pedido</button>
+            <button id="clear-cart-btn">Limpar Carrinho</button>
+            <button id="ver-pagamentos-btn">Pagamentos do Dia</button>
+        </aside>
+    </div>
+
+    <div id="custom-pasta-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Monte Sua Massa!</h2>
+            <form id="custom-pasta-form">
+                <div class="form-group">
+                    <label>1. Escolha a base da massa (R$ 20,00):</label>
+                    <select id="base-massa" required>
+                        <option value="Spaghetti">Spaghetti</option>
+                        <option value="Penne">Penne</option>
+                        <option value="Fettuccine">Fettuccine</option>
+                        <option value="Integral">Integral</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>2. Escolha o molho (R$ 8,00):</label>
+                    <select id="molho-massa" required>
+                        <option value="Sugo">Sugo (Tomate Clássico)</option>
+                        <option value="Branco">Branco (Bechamel)</option>
+                        <option value="Pesto">Pesto</option>
+                        <option value="Funghi">Funghi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>3. Adicionais (R$ 5,00 cada):</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="bacon" name="adicional" value="Bacon"> <label for="bacon">Bacon</label>
+                        <input type="checkbox" id="frango" name="adicional" value="Frango Desfiado"> <label for="frango">Frango Desfiado</label>
+                        <input type="checkbox" id="queijo" name="adicional" value="Queijo Extra"> <label for="queijo">Queijo Extra</label>
+                        <input type="checkbox" id="azeitona" name="adicional" value="Azeitona"> <label for="azeitona">Azeitona</label>
+                    </div>
+                </div>
+                <button type="submit">Adicionar ao Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="pagamento-modal" class="modal">
+        <div class="modal-content pagamento-modal-content">
+            <span class="close-pagamento-btn">&times;</span>
+            <h2>Pagamento</h2>
+            <form id="pagamento-form">
+                <div class="form-group">
+                    <label>Escolha a forma de pagamento:</label>
+                    <select id="forma-pagamento" required>
+                        <option value="">Selecione...</option>
+                        <option value="pix">PIX</option>
+                        <option value="credito">Cartão de Crédito</option>
+                        <option value="debito">Cartão de Débito</option>
+                        <option value="dinheiro">Dinheiro</option>
+                    </select>
+                </div>
+                <div id="pix-section" style="display:none;">
+                    <p>Chave PIX: <strong>sapore.veloce@restaurante.com</strong></p>
+                    <img src="assets/qrcode_pix.png" alt="QR Code PIX" class="qrcode-img">
+                </div>
+                <div id="cartao-section" style="display:none;">
+                    <div class="form-group">
+                        <label>Número do cartão:</label>
+                        <input type="text" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" id="numero-cartao">
+                    </div>
+                    <div class="form-group">
+                        <label>Validade:</label>
+                        <input type="text" maxlength="5" placeholder="MM/AA" id="validade-cartao">
+                    </div>
+                    <div class="form-group">
+                        <label>CVC:</label>
+                        <input type="text" maxlength="3" placeholder="CVC" id="cvc-cartao">
+                    </div>
+                </div>
+                <div id="dinheiro-section" style="display:none;">
+                    <p>Pague no caixa após receber seu pedido.</p>
+                </div>
+                <div id="pagamento-erro" style="color:#c62828; font-weight:bold; margin:10px 0; display:none;"></div>
+                <button type="submit">Pagar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="nota-modal" class="modal">
+        <div class="modal-content nota-modal-content">
+            <span class="close-nota-btn">&times;</span>
+            <h2>Nota Fiscal Gerada</h2>
+            <div id="nota-fiscal-content"></div>
+            <button id="voltar-menu-btn">Voltar ao Menu</button>
+        </div>
+    </div>
+
+    <div id="pagamentos-modal" class="modal">
+        <div class="modal-content pagamentos-modal-content">
+            <span class="close-pagamentos-btn">&times;</span>
+            <h2>Pagamentos do Dia</h2>
+            <div id="pagamentos-dia-content"></div>
+            <button id="fechar-pagamentos-btn">Fechar</button>
+        </div>
+    </div>
+
+    <div id="sorteio-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-sorteio-btn">&times;</span>
+            <h2>Sorteio Semanal!</h2>
+            <form id="sorteio-form">
+                <div class="form-group">
+                    <label>Digite seu nome:</label>
+                    <input type="text" id="sorteio-nome" required>
+                </div>
+                <div class="form-group">
+                    <label>Digite seu e-mail:</label>
+                    <input type="email" id="sorteio-email" required>
+                </div>
+                <button type="submit">Participar</button>
+            </form>
+            <p id="sorteio-resposta"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
